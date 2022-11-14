@@ -1,4 +1,5 @@
 import re
+import json
 import requests
 from bs4 import BeautifulSoup
 import lxml
@@ -10,7 +11,7 @@ class Table_Morse:
 
 
     def main(self):
-        self.show(self.treatment(self.structure('cyril')))
+        self.json_file(self.treatment(self.structure('cyril')))
 
 
     def __request(self) -> str:
@@ -29,6 +30,11 @@ class Table_Morse:
             self.src = file.read()
 
         return self.src
+
+
+    def json_file(self, data):
+        with open('data.json', 'w', encoding='utf-8') as file:
+            json.dump(data, file, indent=4, ensure_ascii=False)
 
 
     def scripe(self, text: str) -> list:

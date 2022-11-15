@@ -11,7 +11,7 @@ class Table_Morse:
 
 
     def main(self):
-        self.json_file(self.treatment(self.structure('cyril')))
+        self._txt_file(self.treatment(self.structure('latin')))
 
 
     def __request(self) -> str:
@@ -32,9 +32,18 @@ class Table_Morse:
         return self.src
 
 
-    def json_file(self, data):
+    def _json_file(self, data):
         with open('data.json', 'w', encoding='utf-8') as file:
             json.dump(data, file, indent=4, ensure_ascii=False)
+
+
+    def _txt_file(self, data: dict):
+        self.output = ""
+        for i in data.items():
+            self.output += f'{i[0]}: {i[1]} \n'
+
+        with open('table.txt', 'w', encoding='utf-8') as file:
+            file.write(self.output)
 
 
     def scripe(self, text: str) -> list:
